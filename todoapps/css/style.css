@@ -30,13 +30,16 @@ header h1 {
 .wrapper .container {
     width: 1024px;
     border-radius: 8px;
-    margin: 16px;
+    margin: 2rem;
     background: #F8F9FA;
     padding: 16px;
     flex-grow: 1;
     height: fit-content;
 }
 
+.container-header.text-center{
+    text-decoration: underline;
+}
 
 .item {
     border-radius: 16px;
