@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dicoding | Javascript - Capturing Event</title>
+    <style>
+        body * {
+            margin: 8px;
+            padding: 5px;
+            border: 2px solid black;
+            width: 60%;
+        }
+
+        .center {
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Capturing merupakan kebalikan dari bubbling yang akan men-trigger event handler dari parent ke child. -->
+    <div align="center" id="langit" class="center">
+        LANGIT
+        <div align="center" id="luar">
+            LUAR
+            <div align="center" id="tengah">
+                TENGAH
+                <div align="center" id="dalam">
+                    DALAM
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // tulis kode Anda di sini
+        const divs = document.getElementsByTagName('div');
+        for (let el of divs) {
+            el.addEventListener('click', function () {
+                alert('ELEMEN ' + el.getAttribute('id').toUpperCase());
+            }, true);
+        }
+    </script>
+</body>
+
+</html>

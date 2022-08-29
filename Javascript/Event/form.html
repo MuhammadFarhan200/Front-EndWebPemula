@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dicoding | Javascript - Form</title>
+    <style>
+        .contents {
+            width: 300px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: none;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+        }
+
+        .form-element {
+            width: 100%;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .form-element .form-input {
+            width: 85%;
+            display: block;
+            border: 1px solid #ced4da;
+            border-radius: 2rem;
+            padding: .5rem 1rem;
+            margin-top: .25rem;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
+        }
+
+        .form-element .form-input:focus {
+            color: #212529;
+            background-color: #fff;
+            border-color: rgba(45, 45, 47, 0.25);
+            outline: 0;
+            box-shadow: 0 0 0 .25rem rgba(45, 46, 48, 0.25);
+        }
+
+        .form-element .submit-button {
+            border: none;
+            border-radius: 2rem;
+            color: white;
+            background-color: black;
+            padding: .5rem 1rem;
+            margin-top: .75rem;
+            box-shadow: 0 4px 10px 0 rgba(45, 54, 65, 0.75);
+            background-size: 300% 100%;
+            -webkit-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .form-element .submit-button:hover,
+        .form-element .submit-button:focus {
+            background-image: linear-gradient(to right, #29323c, #485563, #29323c);
+            transform: translate(0, -5px);
+            background-position: 100% 0;
+            -webkit-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="contents">
+        <h2 align="center">Isi data diri</h2>
+        <div class="formContent">
+            <form id="formDataDiri">
+                <div class="form-element">
+                    <label for="inputNama">Nama</label><br>
+                    <input type="text" class="form-input" id="inputNama" name="nama" placeholder="Nama Anda" required>
+                </div>
+                <div class="form-element">
+                    <label for="inputDomisili">Umur</label>
+                    <input type="number" class="form-input" id="inputUmur" name="umur" placeholder="Umur Anda" required>
+                </div>
+                <div class="form-element">
+                    <label for="inputDomisili">Domisili</label>
+                    <input type="text" class="form-input" id="inputDomisili" name="domisili" placeholder="Domisili Anda"
+                        required>
+                </div>
+                <div class="form-element">
+                    <input type="submit" value="Submit" class="submit-button">
+                </div>
+            </form>
+        </div>
+        <div id="messageAfterSubmit"></div>
+    </div>
+
+    <script>
+        const submitAction = document.getElementById('formDataDiri');
+
+        submitAction.addEventListener('submit', function (event) {
+            const inputNama = document.getElementById('inputNama').value;
+            const inputUmur = document.getElementById('inputUmur').value;
+            const inputDomisili = document.getElementById('inputDomisili').value;
+
+            const titleText = document.createElement('h3');
+            titleText.innerText = 'Data Anda:';
+
+            const dataNama = document.createElement('p');
+            dataNama.innerText = 'Nama: ' + inputNama;
+
+            const dataUmur = document.createElement('p');
+            dataUmur.innerText = 'Umur :' + inputUmur;
+
+            const dataDomisili = document.createElement('p');
+            dataDomisili.innerText = 'Domisili: ' + inputDomisili;
+
+            const dataDiri = document.getElementById('messageAfterSubmit');
+            dataDiri.appendChild(titleText);
+            dataDiri.appendChild(dataNama);
+            dataDiri.appendChild(dataUmur);
+            dataDiri.appendChild(dataDomisili);
+            event.preventDefault();
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dicoding | Javascript - addEventListener</title>
+    <style>
+        .buttons {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: none;
+            padding: 2rem;
+            border-radius: .5rem;
+            padding: 2rem;
+            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+        }
+
+        .button {
+            margin: 8px;
+            border: none;
+            border-radius: 2rem;
+            color: white;
+            background-color: black;
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 10px 0 rgba(45, 54, 65, 0.75);
+            background-size: 300% 100%;
+            -webkit-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .button:hover {
+            background-image: linear-gradient(to right, #29323c, #485563, #29323c, #485563);
+            transform: translate(0, -5px);
+            background-position: 100% 0;
+            -webkit-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .buttons p {
+            opacity: .9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="buttons" align="center">
+        <h3 id="caption">
+            Silahkan tekan salah satu tombol dibawah ini!
+        </h3>
+        <button class="button" id="tombol">Click Here</button>
+        <p id="petunjuk">Klik tombol Custom Event di atas satu kali!</p>
+    </div>
+
+    <script>
+        const changeCaption = new Event('changeCaption');
+
+        window.addEventListener('load', function () {
+            const tombol = document.getElementById('tombol');
+            tombol.addEventListener('changeCaption', customEventHandler);
+            tombol.addEventListener('click', function () {
+                tombol.dispatchEvent(changeCaption);
+            });
+        });
+
+        function customEventHandler(ev) {
+            console.log('Event ' + ev.type + ' telah dijalankan');
+            const caption = document.getElementById('caption');
+            caption.innerText = 'Anda telah membangkitkan custom event';
+            const petunjuk = document.getElementById('petunjuk');
+            petunjuk.setAttribute('hidden', '');
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Dicoding | Javascript - Event Handler</title>
+
+	<style>
+		.contents {
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			border: none;
+			border-radius: .5rem;
+			padding: 2rem;
+			box-shadow: 0 .5rem 1rem  rgba(0, 0, 0, .15);
+		}
+
+		#generateButton {
+			margin-top: 5px;
+			margin-bottom: 15px;
+		}
+
+		#incrementButton {
+			font-size: 14px;
+			border: none;
+			border-radius: 2rem;
+			color: white;
+			background-color: black;
+			padding: 1rem 2rem;
+			margin-top: 5px;
+			margin-bottom: 15px;
+			box-shadow: 0 4px 10px 0 rgba(45, 54, 65, 0.75);
+			background-size: 300% 100%;
+			-webkit-transition: all 0.3s ease-in-out;
+			transition: all 0.3s ease-in-out;
+		}
+
+		#incrementButton:hover {
+			background-image: linear-gradient(to right, #29323c, #485563, #29323c, #485563);
+			transform: translate(0, -5px);
+			background-position: 100% 0;
+			-webkit-transition: all 0.3s ease-in-out;
+			transition: all 0.3s ease-in-out;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="contents" align="center" hidden>
+		<button id="incrementButton">Click Here</button>
+		<p>
+			Kamu sudah menekan tombol di atas sebanyak
+			<b id="count">0</b>
+			kali
+		</p>
+	</div>
+
+	<script>
+		// Kode JavaScript
+		function welcome() {
+			alert("Tekan 'OK' untuk memunculkan konten halaman!");
+			const contents = document.querySelector(".contents");
+			contents.removeAttribute("hidden");
+		}
+		// document.body.onload = welcome;
+		window.addEventListener('load', welcome);
+
+		function increment() {
+			document.getElementById('count').innerText++;
+
+			if (document.getElementById('count').innerText == 5) {
+				const hiddenMessage = document.createElement('h3');
+				hiddenMessage.innerText = 'Selamat! Anda Menemukan Hadiah Tersembunyi .....';
+
+				const image = document.createElement('img');
+				image.setAttribute('src', 'https://i.ibb.co/0V49VRZ/catto.jpg');
+				image.style.borderRadius = '.5rem';
+
+				const footer = document.createElement('p');
+				footer.innerText = '@farhannsrllh_';
+
+				const contents = document.querySelector('.contents');
+				contents.appendChild(hiddenMessage);
+				contents.appendChild(image);
+				contents.appendChild(footer);
+			}
+		}
+		// document.getElementById('incrementButton').onclick = increment;
+		document.getElementById('incrementButton').addEventListener('click', increment);
+	</script>
+</body>
+
+</html>
