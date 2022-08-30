@@ -103,13 +103,13 @@ input[type=text], input[type=date] {
     margin-top: 1.5rem;
     align-self: flex-end;
     cursor: pointer;
-    transition: all .3s ease-in-out;
+    transition: all .2s ease-in-out;
 }
 
 .btn-submit:hover {
     background: #5F30E2;
     color: white;
-    transition: all .3s ease-in-out;
+    transition: all .2s ease-in-out;
 }
 
 input[type=text], input[type=date], .btn-submit:focus {
@@ -133,6 +133,7 @@ input[type=text], input[type=date], .btn-submit:focus {
     margin-left: auto;
     cursor: pointer;
     border: none;
+    transition: all .2s ease-in-out;
 }
 
 .check-button:hover {
@@ -143,12 +144,13 @@ input[type=text], input[type=date], .btn-submit:focus {
 .trash-button {
     width: 40px;
     height: 40px;
-
+    
     background: url('../assets/trash-outline.svg');
     background-size: contain;
     margin-left: 16px;
     cursor: pointer;
     border: none;
+    transition: all .2s ease-in-out;
 }
 
 .trash-button:hover {
@@ -165,9 +167,11 @@ input[type=text], input[type=date], .btn-submit:focus {
     margin-left: auto;
     cursor: pointer;
     border: none;
+    transition: all .2s ease-in-out;
 }
 
 .undo-button:hover {
+    transform: scale(.9);
     background: url('../assets/undo-ouline.svg');
     background-size: contain;
 }
