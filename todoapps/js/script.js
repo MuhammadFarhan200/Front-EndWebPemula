@@ -164,20 +164,6 @@ function findTodo(todoId) {
 }
 
 /**
- * removeTaskFromComleted berfungsi untuk menghapus todo.
- * fungsi ini akan menghapus Todo berdasarkan index yang didapatkan dari pencarian Todo dengan menggunakan findTodoIndex(). 
- * Apabila pencarian berhasil, maka akan menghapus todo tersebut menggunakan fungsi splice() yang disediakan oleh JavaScript. 
- */
-function removeTaskFromCompleted(todoId) {
-    const todoTarget = findTodoIndex(todoId);
-
-    if (todoTarget === -1) return;
-
-    todos.splice(todoTarget, 1);
-    document.dispatchEvent(new Event(RENDER_EVENT));
-}
-
-/**
  * undoTaskFromComleted berfungsi untuk memindahkan todo dari selesai ke belum selesai.
  * state isCompleted yang diubah nilainya ke false, hal ini bertujuan agar todo task yang sebelumnya completed (selesai), 
  * bisa dipindah menjadi incomplete (belum selesai).
@@ -188,6 +174,20 @@ function undoTaskFromCompleted(todoId) {
     if (todoTarget == null) return;
 
     todoTarget.isCompleted = false;
+    document.dispatchEvent(new Event(RENDER_EVENT));
+}
+
+/**
+ * removeTaskFromComleted berfungsi untuk menghapus todo.
+ * fungsi ini akan menghapus Todo berdasarkan index yang didapatkan dari pencarian Todo dengan menggunakan findTodoIndex(). 
+ * Apabila pencarian berhasil, maka akan menghapus todo tersebut menggunakan fungsi splice() yang disediakan oleh JavaScript. 
+ */
+function removeTaskFromCompleted(todoId) {
+    const todoTarget = findTodoIndex(todoId);
+
+    if (todoTarget === -1) return;
+
+    todos.splice(todoTarget, 1);
     document.dispatchEvent(new Event(RENDER_EVENT));
 }
 
