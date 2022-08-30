@@ -103,11 +103,13 @@ input[type=text], input[type=date] {
     margin-top: 1.5rem;
     align-self: flex-end;
     cursor: pointer;
+    transition: all .3s ease-in-out;
 }
 
 .btn-submit:hover {
     background: #5F30E2;
     color: white;
+    transition: all .3s ease-in-out;
 }
 
 input[type=text], input[type=date], .btn-submit:focus {
