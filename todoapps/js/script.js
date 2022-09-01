@@ -3,16 +3,71 @@ const todos = [];
 const RENDER_EVENT = 'render-todo';
 // Variabel RENDER_EVENT bertujuan untuk mendefinisikan Custom Event dengan nama 'render-todo'.
 
+const SAVED_EVENT = 'saved-todo';
+const STORAGE_KEY = 'TODO_APPS';
+
+function isStorageExist() /* boolean */ {
+    if (typeof (Storage) === undefined) {
+        alert('Browser kamu tidak mendukung local storage');
+        return false;
+    }
+    return true;
+}
+
+/**
+ * agar dapat memudahkan dalam mengetahui bahwa pada setiap perubahan data bisa secara sukses memperbarui data pada storage, 
+ * kita bisa menerapkan listener dari event SAVED_EVENT. Kemudian, di dalam event listener tersebut 
+ * kita bisa memanggil getItem(KEY) untuk mengambil data dari localStorage, lalu bisa kita tampilkan secara sederhana menggunakan console log.
+ */
+document.addEventListener(SAVED_EVENT, function () {
+    console.log(localStorage.getItem(STORAGE_KEY));
+});
+
+function saveData() {
+    // kode isStorageExist() berfungsi untuk mengembalikan nilai boolean untuk menentukan apakah memang benar didukung atau tidak.
+    if (isStorageExist()) {
+        // JSON.stringify berfungsi untuk mengkonversi data object ke string
+        const parsed = JSON.stringify(todos);
+        // Menyimpan data ke storage sesuai dengan key yang kita tentukan. Dalam hal ini key yang kita gunakan adalah "TODO_APPS" dalam variabel STORAGE_KEY.
+        localStorage.setItem(STORAGE_KEY, parsed);
+        // Untuk mempermudah debugging atau tracking ketika terjadi perubahan data, kita akan memanggil sebuah custom event baru yang bernama "saved-todo" dalam variabel SAVED_EVENT.
+        document.dispatchEvent(new Event(SAVED_EVENT));
+    }
+}
+
+/**
+ * Ambil data dari localStorage, data ini akan disediakan dalam format teks JSON.
+ * Kemudian parse data JSON tadi menjadi sebuah object.
+ * Lalu, masukkan satu persatu data dari object ke array todos.
+ * Agar bisa diperbarui pada tampilan, panggil Event RENDER_EVENT.
+ */
+function loadDataFromStorage() {
+    const serializedData = localStorage.getItem(STORAGE_KEY);
+    let data = JSON.parse(serializedData);
+
+    if (data !== null) {
+        for (const todo of data) {
+            todos.push(todo);
+        }
+    }
+
+    document.dispatchEvent(new Event(RENDER_EVENT));
+}
+
+/**
+ * Kode di dibawah adalah sebuah listener yang akan menjalankan kode yang ada didalamnya ketika event DOMContentLoaded dibangkitkan 
+ * alias ketika semua elemen HTML sudah dimuat menjadi DOM dengan baik.
+ */
 document.addEventListener('DOMContentLoaded', function () {
-    /**
-     * Kode di atas adalah sebuah listener yang akan menjalankan kode yang ada didalamnya ketika event DOMContentLoaded dibangkitkan 
-     * alias ketika semua elemen HTML sudah dimuat menjadi DOM dengan baik.
-     */
     const submitForm = document.getElementById('form');
     submitForm.addEventListener('submit', function (event) {
         event.preventDefault();
         addTodo();
     });
+
+    if (isStorageExist()) {
+        loadDataFromStorage();
+    }
 });
 
 function addTodo() {
