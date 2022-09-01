@@ -130,9 +130,70 @@
                 if (userData.length > 5) {
                     userData.pop();
                 }
+                // menyimpan data tersebut ke dalam local storage melalui method setItem()
                 localStorage.setItem(storageKey, JSON.stringify(userData));
+                // JSON.stringify berfungsi untuk mengubah array yang berisi data-data JSON ke dalam bentuk string terlebih dahulu.
             }
         }
+
+        // fungsi getUserList() berguna untuk mendapatkan semua data pada item storage yang berisi data user yang sudah di-input
+        /**
+         * Fungsi ini mengembalikan nilai array dari localStorage ketika sudah memiliki nilai sebelumnya melalui JSON.parse(). 
+         * Namun, jika item storage yang kita ambil masih kosong, fungsi ini akan mengembalikan nilai array kosong.
+        */
+        function getUserList() {
+            if (checkForStorage()) {
+                return JSON.parse(localStorage.getItem(storageKey)) || [];
+            } else {
+                return [];
+            }
+        }
+
+        // fungsi renderUserList berfungsi untuk merender data user pada tabel HTML.
+        function renderUserList() {
+            const userData = getUserList();
+            const userList = document.querySelector('#user-list-detail');
+            userList.innerHTML = '';
+            for (let user of userData) {
+                let row = document.createElement('tr');
+                row.innerHTML = '<td>' + user.nama + '</td>';
+                row.innerHTML += '<td>' + user.umur + '</td>';
+                row.innerHTML += '<td>' + user.domisili + '</td>';
+                userList.appendChild(row);
+            }
+        }
+
+        /**
+         * menambahkan event listener ke tombol submit untuk mengambil semua data yang sudah di-input ke semua field di form. 
+         * Lalu menyimpannya pada item storage melalui fungsi putUserList(). 
+         * Selanjutnya daftar user yang baru saja kita masukkan akan langsung ditampilkan melalui fungsi renderUserList().
+        */
+        submitAction.addEventListener('submit', function (event) {
+            const inputNama = document.getElementById('nama').value;
+            const inputUmur = document.getElementById('umur').value;
+            const inputDomisili = document.getElementById('domisili').value;
+            const newUserData = {
+                nama: inputNama,
+                umur: inputUmur,
+                domisili: inputDomisili,
+            }
+            putUserList(newUserData);
+            renderUserList();
+        });
+
+        /**
+         * menambahkan event listener ke objek window untuk event "load". 
+         * Event handler-nya akan berisi perintah untuk menampilkan semua data yang sudah kita input ke dalam item storage.
+        */
+        window.addEventListener('load', function () {
+            if (checkForStorage) {
+                if (localStorage.getItem(storageKey) !== null) {
+                    renderUserList();
+                }
+            } else {
+                alert('Browser yang Anda gunakan tidak mendukung Web Storage');
+            }
+        });
     </script>
 
 </body>
