@@ -37,11 +37,31 @@ function loadDataFromStorage() {
     document.dispatchEvent(new Event(RENDER_EVENT));
 }
 
+
 document.addEventListener('DOMContentLoaded', function () {
     const submitForm = document.getElementById('input-book');
+    const formSearch = document.getElementById("search-book");
+    const checkComplete = document.getElementById('input-book-isCompleted');
+
     submitForm.addEventListener('submit', function (event) {
         event.preventDefault();
         addBook();
+
+        document.getElementById("input-book-title").value = "";
+        document.getElementById("input-book-penulis").value = "";
+        document.getElementById("input-book-tahun").value = "";
+        document.getElementById("input-book-isCompleted").checked = false;
+    });
+
+    checkComplete.addEventListener("input", function (event) {
+        event.preventDefault();
+        checkButton();
+    });
+
+    formSearch.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        bookSearch();
     });
 
     if (isStorageExist()) {
@@ -53,9 +73,10 @@ function addBook() {
     const titleBook = document.getElementById('input-book-title').value;
     const penulisBook = document.getElementById('input-book-penulis').value;
     const tahun = document.getElementById('input-book-tahun').value;
+    const isComplete = document.getElementById("input-book-isCompleted").checked;
 
     const generatedID = generateId();
-    const bookObject = generatebookObject(generatedID, titleBook, penulisBook, tahun, false);
+    const bookObject = generatebookObject(generatedID, titleBook, penulisBook, tahun, isComplete);
     books.push(bookObject);
 
     document.dispatchEvent(new Event(RENDER_EVENT));
@@ -84,12 +105,12 @@ document.addEventListener(RENDER_EVENT, function () {
     completeBookshelfList.innerHTML = '';
 
     for (const bookItem of books) {
-        const todoElement = makeBook(bookItem);
+        const bookElement = makeBook(bookItem);
         if (!bookItem.isComplete) {
-            incompleteBookshelfList.append(todoElement);
+            incompleteBookshelfList.append(bookElement);
         }
         else {
-            completeBookshelfList.append(todoElement);
+            completeBookshelfList.append(bookElement);
         }
     }
 });
@@ -205,4 +226,28 @@ function findBookIndex(bookId) {
     }
 
     return -1;
+}
+
+function bookSearch() {
+    const searchBook = document.getElementById("search-book-title");
+    const filter = searchBook.value.toUpperCase();
+    const bookItem = document.querySelectorAll(".book-shelf > .book_list > .book-item");
+    for (let i = 0; i < bookItem.length; i++) {
+        txtValue = bookItem[i].textContent || bookItem[i].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            bookItem[i].style.display = "";
+        } else {
+            bookItem[i].style.display = "none";
+        }
+    }
+}
+
+function checkButton() {
+    const checkComplete = document.getElementById('input-book-isCompleted');
+    const check = document.querySelector("span");
+    if (checkComplete.checked) {
+        check.innerText = "Selesai dibaca";
+    } else {
+        check.innerText = "Belum selesai dibaca";
+    }
 }

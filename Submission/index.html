@@ -30,11 +30,15 @@
                 </div>
                 <div class="input-form">
                     <label for="input-book-title">Tahun Keluar</label>
-                    <input type="date" id="input-book-tahun" placeholder="Masukkan Tahun Keluar" required>
+                    <input type="number" id="input-book-tahun" placeholder="Masukkan Tahun Keluar" required>
+                </div>
+                <div class="input-form">
+                    <input type="checkbox" name="" id="input-book-isCompleted">
+                    <label for="input-book-isCompleted" class="check-label">Selesai Dibaca</label>
                 </div>
                 <div class="input-form">
                     <button id="book-submit" type="submit" class="submit-button">
-                        Masukkan Buku ke Rak <b>Belum Selesai Dibaca</b>
+                        Masukkan Buku ke Rak <span style="font-weight: bold;">Belum Selesai Dibaca</span>
                     </button>
                 </div>
             </form>
@@ -44,8 +48,7 @@
             <h2>Cari Buku</h2>
             <form action="" id="search-book">
                 <div class="input-form input-form-search">
-                    <label for="search-book-title">Judul Buku</label>
-                    <input type="search" id="search-book-title" placeholder="Masukkan Judul Buku">
+                    <input type="search" id="search-book-title" placeholder="Cari Buku">
                     <button id="submit-search" class="submit-button">Cari</button>
                 </div>
             </form>
