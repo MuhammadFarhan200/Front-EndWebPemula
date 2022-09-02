@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap');
 
+@media (prefers-reduced-motion:no-preference) {
+    :root {scroll-behavior: smooth}
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -98,4 +102,12 @@ body {
     background-position: 100% 0;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
+}
+
+.search {
+    margin-top: 2rem;
+}
+
+.book-shelf {
+    margin-top: 2rem;
 }
