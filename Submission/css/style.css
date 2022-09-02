@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Jost', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.header {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+}
+
+.header-title {
+    color: white;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+    background-color: white;
+}
+
+.card {
+    min-width: 576px;
+    max-width: 1024px;
+    padding: 2rem;
+    background-color: white;
+    margin: 0 auto;
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+}
+
+.card h2 {
+    margin-bottom: 1rem;
+}
+
+.input-form {
+    margin: .5rem;
+}
+
+.input-form label {
+    font-weight: bold;
+    font-size: 18px;
+
+}
+
+.input-form input[type=text], input[type=date] {
+    font-family: 'Jost', sans-serif;
+    width: 100%;
+    display: block;
+    background: rgba(165, 165, 165, 0.10);
+    border-radius: 2rem;
+    padding: .8rem 1rem;
+    font-size: 18px;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+    transition: all .2s ease-in-out;
+}
+
+.input-form input[type=text]:focus, input[type=date]:focus {
+    /* border: 1px solid rgba(0, 0, 0, 0.5); */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .15);
+}
+
+.submit-button {
+    width: 100%;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 2rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 16px;
+    padding: 1rem;
+    color: white;
+    background-size: 300% 100%;
+    background-color: black;
+    box-shadow: 0 4px 10px 0 rgba(45, 54, 65, 0.75);
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.submit-button:hover {
+    background-image: linear-gradient(to right, #29323c, #485563, #29323c, #485563);
+    transform: translate(0, -5px);
+    background-position: 100% 0;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
