@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap');
 
 @media (prefers-reduced-motion:no-preference) {
-    :root {scroll-behavior: smooth}
+    :root {
+        scroll-behavior: smooth
+    }
 }
 
 * {
@@ -22,10 +24,25 @@ body {
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.9);
     color: white;
+    position: sticky;
+    top: 0;
 }
 
 .header-title {
     color: white;
+}
+
+.image {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background: url("../img/book.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .content {
@@ -37,13 +54,12 @@ body {
 }
 
 .card {
-    min-width: 576px;
-    max-width: 1024px;
+    width: 768px;
     padding: 2rem;
     background-color: white;
     margin: 0 auto;
     border: none;
-    border-radius: 1rem;
+    border-radius: .5rem;
     box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
 }
 
@@ -61,7 +77,9 @@ body {
 
 }
 
-.input-form input[type=text], input[type=search], input[type=number] {
+.input-form input[type=text],
+input[type=search],
+input[type=number] {
     font-family: 'Jost', sans-serif;
     width: 100%;
     display: block;
@@ -75,8 +93,9 @@ body {
     transition: all .2s ease-in-out;
 }
 
-.input-form input[type=text]:focus, input[type=search]:focus, input[type=number]:focus {
-    /* border: 1px solid rgba(0, 0, 0, 0.5); */
+.input-form input[type=text]:focus,
+input[type=search]:focus,
+input[type=number]:focus {
     box-shadow: 0 4px 8px rgba(0, 0, 0, .15);
 }
 
@@ -92,10 +111,10 @@ body {
     width: 100%;
     margin-top: 1rem;
     border: none;
-    border-radius: 2rem;
+    border-radius: 5rem;
     font-family: 'Jost', sans-serif;
     font-size: 16px;
-    padding: 1rem;
+    padding: 1rem 2rem;
     color: white;
     background-color: black;
     box-shadow: 0 4px 10px 0 rgba(45, 54, 65, 0.75);
@@ -123,7 +142,9 @@ body {
     background: rgba(202, 200, 200, 0.5);
 }
 
-.button-sudah-dibaca, .button-belum-dibaca, .button-hapus-buku {
+.button-sudah-dibaca,
+.button-belum-dibaca,
+.button-hapus-buku {
     font-family: 'Jost', sans-serif;
     width: auto;
     padding: .5rem 1rem;
@@ -138,16 +159,22 @@ body {
 }
 
 .button-hapus-buku {
+    background-color: rgb(160, 0, 0);
     margin-left: .5rem;
 }
 
-.button-sudah-dibaca:hover, .button-belum-dibaca:hover, .button-hapus-buku:hover {
+.button-sudah-dibaca:hover,
+.button-belum-dibaca:hover {
     background-color: #29323c;
     transform: translate(0, -5px);
 }
 
+.button-hapus-buku:hover {
+    background-color: rgb(94, 0, 0);
+    transform: translate(0, -5px);
+}
+
 .footer {
-    width: 100%;
     color: white;
     background-color: rgba(0, 0, 0, 0.9);
     margin-top: 5rem;
@@ -155,6 +182,17 @@ body {
     text-align: center;
 }
 
-.footer .footer-text, .footer-text a {
+.footer .footer-text,
+.footer-text a {
     color: white;
+}
+
+@media only screen and (max-width: 768px) {
+    .content {
+        padding: 1rem;
+    }
+
+    .card {
+        width: 100%;
+    }
 }

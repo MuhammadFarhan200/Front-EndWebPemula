@@ -4,7 +4,7 @@ const RENDER_EVENT = 'render-book';
 const SAVED_EVENT = 'saved-book';
 const STORAGE_KEY = 'BOOKSHELF_APPS';
 
-function isStorageExist() /* boolean */ {
+function isStorageExist() {
     if (typeof (Storage) === undefined) {
         alert('Browser kamu tidak mendukung local storage');
         return false;
@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById("input-book-penulis").value = "";
         document.getElementById("input-book-tahun").value = "";
         document.getElementById("input-book-isCompleted").checked = false;
+        document.querySelector('span').innerText = 'Belum Selesai Dibaca';
     });
 
     checkComplete.addEventListener("input", function (event) {
@@ -209,13 +210,16 @@ function undoBookFromCompleted(bookId) {
 }
 
 function removeBookFromCompleted(bookId) {
-    const bookTarget = findBookIndex(bookId);
-
-    if (bookTarget === -1) return;
-
-    books.splice(bookTarget, 1);
-    document.dispatchEvent(new Event(RENDER_EVENT));
-    saveData();
+    const hapus = confirm('Apakah Anda Yakin Ingin Mengahpus Buku Ini?');
+    if (hapus) {
+        const bookTarget = findBookIndex(bookId);
+        if (bookTarget === -1) return;
+        books.splice(bookTarget, 1);
+        document.dispatchEvent(new Event(RENDER_EVENT));
+        saveData();
+    } else {
+        alert('Buku Gagal Dihapus!');
+    }
 }
 
 function findBookIndex(bookId) {
@@ -231,7 +235,7 @@ function findBookIndex(bookId) {
 function bookSearch() {
     const searchBook = document.getElementById("search-book-title");
     const filter = searchBook.value.toUpperCase();
-    const bookItem = document.querySelectorAll(".book-shelf > .book_list > .book-item");
+    const bookItem = document.querySelectorAll(".book-item");
     for (let i = 0; i < bookItem.length; i++) {
         txtValue = bookItem[i].textContent || bookItem[i].innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
