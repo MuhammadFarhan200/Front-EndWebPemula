@@ -37,7 +37,6 @@ function loadDataFromStorage() {
     document.dispatchEvent(new Event(RENDER_EVENT));
 }
 
-
 document.addEventListener('DOMContentLoaded', function () {
     const submitForm = document.getElementById('input-book');
     const formSearch = document.getElementById("search-book");
@@ -61,7 +60,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     formSearch.addEventListener("submit", function (event) {
         event.preventDefault();
-
         bookSearch();
     });
 

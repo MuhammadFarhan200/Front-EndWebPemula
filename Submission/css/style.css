@@ -79,8 +79,8 @@ body {
 }
 
 .input-form input[type=text],
-input[type=search],
-input[type=number] {
+.input-form input[type=search],
+.input-form input[type=number] {
     font-family: 'Jost', sans-serif;
     width: 100%;
     display: block;
