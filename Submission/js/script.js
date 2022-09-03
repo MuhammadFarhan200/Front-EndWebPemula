@@ -141,7 +141,7 @@ function makeBook(bookObject) {
     if (bookObject.isComplete) {
         const belumDibaca = document.createElement('button');
         belumDibaca.classList.add('button-belum-dibaca');
-        belumDibaca.innerText = 'Belum Dibaca';
+        belumDibaca.innerText = 'Belum Selesai Dibaca';
 
         belumDibaca.addEventListener('click', function () {
             undoBookFromCompleted(bookObject.id);
@@ -160,7 +160,7 @@ function makeBook(bookObject) {
     } else {
         const sudahDibaca = document.createElement('button');
         sudahDibaca.classList.add('button-sudah-dibaca');
-        sudahDibaca.innerText = 'Sudah Dibaca';
+        sudahDibaca.innerText = 'Selesai Dibaca';
 
         sudahDibaca.addEventListener('click', function () {
             addBookToCompleted(bookObject.id);
