@@ -208,16 +208,55 @@ function undoBookFromCompleted(bookId) {
 }
 
 function removeBookFromCompleted(bookId) {
-    const hapus = confirm('Apakah Anda Yakin Ingin Mengahpus Buku Ini?');
-    if (hapus) {
+    const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+    },
+    buttonsStyling: true
+    })
+
+    swalWithBootstrapButtons.fire({
+    title: 'Anda Yakin?',
+    text: "Anda Akan Menhapus Data Buku Ini!",
+    icon: 'warning',
+    showCancelButton: true,
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Hapus',
+    cancelButtonText: 'Batal',
+    reverseButtons: true
+    }).then((result) => {
+    if (result.isConfirmed) {
         const bookTarget = findBookIndex(bookId);
         if (bookTarget === -1) return;
         books.splice(bookTarget, 1);
         document.dispatchEvent(new Event(RENDER_EVENT));
         saveData();
-    } else {
-        alert('Buku Gagal Dihapus!');
+        swalWithBootstrapButtons.fire(
+        'Dihapus!',
+        'Data Buku Anda Berhasil Dihapus.',
+        'success'
+        )
+    } else if (
+        result.dismiss === Swal.DismissReason.cancel
+    ) {
+        swalWithBootstrapButtons.fire(
+        'Dibatalkan!',
+        'Data Buku Gagal Dihapus!',
+        'error'
+        )
     }
+    })
+    // const hapus = confirm('Apakah Anda Yakin Ingin Mengahpus Buku Ini?');
+    // if (hapus) {
+    //     const bookTarget = findBookIndex(bookId);
+    //     if (bookTarget === -1) return;
+    //     books.splice(bookTarget, 1);
+    //     document.dispatchEvent(new Event(RENDER_EVENT));
+    //     saveData();
+    // } else {
+    //     alert('Buku Gagal Dihapus!');
+    // }
 }
 
 function findBookIndex(bookId) {
