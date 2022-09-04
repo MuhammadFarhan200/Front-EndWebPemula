@@ -240,9 +240,11 @@ function removeBookFromCompleted(bookId) {
 
     swalWithBootstrapButtons.fire({
         title: 'Anda Yakin?',
-        text: "Anda Akan Menhapus Data Buku Ini!",
+        text: "Anda Akan Menghapus Data Buku Ini!",
         icon: 'warning',
         showCancelButton: true,
+        showCloseButton: false,
+        allowOutsideClick: true,
         cancelButtonColor: '#d33',
         confirmButtonText: 'Hapus',
         cancelButtonText: 'Batal',
