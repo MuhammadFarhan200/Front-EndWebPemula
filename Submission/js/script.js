@@ -139,7 +139,7 @@ function makeBook(bookObject) {
     if (bookObject.isComplete) {
         const belumDibaca = document.createElement('button');
         belumDibaca.classList.add('button-belum-dibaca');
-        belumDibaca.innerText = 'Belum Selesai Dibaca';
+        belumDibaca.innerHTML = '<span class="material-icons">replay</span><span class="button-action-text">Belum Selesai Dibaca</span>';
 
         belumDibaca.addEventListener('click', function () {
             undoBookFromCompleted(bookObject.id);
@@ -147,18 +147,21 @@ function makeBook(bookObject) {
 
         const hapusBuku = document.createElement('button');
         hapusBuku.classList.add('button-hapus-buku');
-        hapusBuku.innerText = 'Hapus Buku';
+        hapusBuku.innerHTML = '<span class="material-icons">delete</span><span class="button-action-text">Hapus</span>';
 
         hapusBuku.addEventListener('click', function () {
             removeBookFromCompleted(bookObject.id);
         });
 
-        container.append(belumDibaca);
-        container.append(hapusBuku);
+        const buttonAction = document.createElement('div');
+        buttonAction.classList.add('button-action');
+        buttonAction.append(belumDibaca, hapusBuku);
+
+        container.append(buttonAction);
     } else {
         const sudahDibaca = document.createElement('button');
         sudahDibaca.classList.add('button-sudah-dibaca');
-        sudahDibaca.innerText = 'Selesai Dibaca';
+        sudahDibaca.innerHTML = '<span class="material-icons">remove_circle_outline</span><span class="button-action-text">Selesai Dibaca</span>';
 
         sudahDibaca.addEventListener('click', function () {
             addBookToCompleted(bookObject.id);
@@ -166,13 +169,17 @@ function makeBook(bookObject) {
 
         const hapusBuku = document.createElement('button');
         hapusBuku.classList.add('button-hapus-buku');
-        hapusBuku.innerText = 'Hapus Buku';
+        hapusBuku.innerHTML = '<span class="material-icons">delete</span><span class="button-action-text">Hapus</span>';
 
         hapusBuku.addEventListener('click', function () {
             removeBookFromCompleted(bookObject.id);
         });
 
-        container.append(sudahDibaca, hapusBuku);
+        const buttonAction = document.createElement('div');
+        buttonAction.classList.add('button-action');
+        buttonAction.append(sudahDibaca, hapusBuku);
+
+        container.append(buttonAction);
     }
 
     return container;
@@ -209,43 +216,43 @@ function undoBookFromCompleted(bookId) {
 
 function removeBookFromCompleted(bookId) {
     const swalWithBootstrapButtons = Swal.mixin({
-    customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
-    },
-    buttonsStyling: true
+        customClass: {
+            confirmButton: 'btn btn-success',
+            cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: true
     })
 
     swalWithBootstrapButtons.fire({
-    title: 'Anda Yakin?',
-    text: "Anda Akan Menhapus Data Buku Ini!",
-    icon: 'warning',
-    showCancelButton: true,
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Hapus',
-    cancelButtonText: 'Batal',
-    reverseButtons: true
+        title: 'Anda Yakin?',
+        text: "Anda Akan Menhapus Data Buku Ini!",
+        icon: 'warning',
+        showCancelButton: true,
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Hapus',
+        cancelButtonText: 'Batal',
+        reverseButtons: true
     }).then((result) => {
-    if (result.isConfirmed) {
-        const bookTarget = findBookIndex(bookId);
-        if (bookTarget === -1) return;
-        books.splice(bookTarget, 1);
-        document.dispatchEvent(new Event(RENDER_EVENT));
-        saveData();
-        swalWithBootstrapButtons.fire(
-        'Dihapus!',
-        'Data Buku Anda Berhasil Dihapus.',
-        'success'
-        )
-    } else if (
-        result.dismiss === Swal.DismissReason.cancel
-    ) {
-        swalWithBootstrapButtons.fire(
-        'Dibatalkan!',
-        'Data Buku Gagal Dihapus!',
-        'error'
-        )
-    }
+        if (result.isConfirmed) {
+            const bookTarget = findBookIndex(bookId);
+            if (bookTarget === -1) return;
+            books.splice(bookTarget, 1);
+            document.dispatchEvent(new Event(RENDER_EVENT));
+            saveData();
+            swalWithBootstrapButtons.fire(
+                'Dihapus!',
+                'Data Buku Anda Berhasil Dihapus.',
+                'success'
+            )
+        } else if (
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+            swalWithBootstrapButtons.fire(
+                'Dibatalkan!',
+                'Data Buku Gagal Dihapus!',
+                'error'
+            )
+        }
     })
     // const hapus = confirm('Apakah Anda Yakin Ingin Mengahpus Buku Ini?');
     // if (hapus) {

@@ -147,6 +147,9 @@ input[type=number]:focus {
 .button-sudah-dibaca,
 .button-belum-dibaca,
 .button-hapus-buku {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     font-family: 'Jost', sans-serif;
     width: auto;
     padding: .5rem 1rem;
@@ -176,12 +179,22 @@ input[type=number]:focus {
     transform: translate(0, -5px);
 }
 
+.button-action {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .footer {
     color: white;
     background-color: rgba(0, 0, 0, 0.9);
     margin-top: 5rem;
     padding: 2rem;
     text-align: center;
+}
+
+.material-icons {
+    margin-right: .5rem;
 }
 
 .footer .footer-text,
@@ -192,5 +205,15 @@ input[type=number]:focus {
 @media only screen and (max-width: 768px) {
     .card {
         width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .button-action-text {
+        display: none;
+    }
+
+    .material-icons {
+        margin-right: 0;
     }
 }
