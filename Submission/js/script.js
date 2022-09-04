@@ -80,6 +80,11 @@ function addBook() {
 
     document.dispatchEvent(new Event(RENDER_EVENT));
     saveData();
+    Swal.fire(
+        'Data Buku Berhasil Disimpan.',
+        '',
+        'success'
+    )
 }
 
 function generateId() {
@@ -193,6 +198,11 @@ function addBookToCompleted(bookId) {
     bookTarget.isComplete = true;
     document.dispatchEvent(new Event(RENDER_EVENT));
     saveData();
+    Swal.fire(
+        'Buku Berhasil Dipindahkan ke Rak Selesai Dibaca.',
+        '',
+        'success'
+    )
 }
 
 function findBook(bookId) {
@@ -212,6 +222,11 @@ function undoBookFromCompleted(bookId) {
     bookTarget.isComplete = false;
     document.dispatchEvent(new Event(RENDER_EVENT));
     saveData();
+    Swal.fire(
+        'Buku Berhasil Dipindahkan ke Rak Belum Selesai Dibaca.',
+        '',
+        'success'
+    )
 }
 
 function removeBookFromCompleted(bookId) {
