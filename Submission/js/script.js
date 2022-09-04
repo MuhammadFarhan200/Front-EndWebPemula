@@ -246,7 +246,7 @@ function removeBookFromCompleted(bookId) {
         cancelButtonColor: '#d33',
         confirmButtonText: 'Hapus',
         cancelButtonText: 'Batal',
-        reverseButtons: true
+        reverseButtons: true,
     }).then((result) => {
         if (result.isConfirmed) {
             const bookTarget = findBookIndex(bookId);
