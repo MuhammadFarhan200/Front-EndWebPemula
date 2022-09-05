@@ -63,6 +63,11 @@ document.addEventListener('DOMContentLoaded', function () {
         bookSearch();
     });
 
+    formSearch.addEventListener('submit', function (event) {
+        event.preventDefault();
+        bookSearch();
+    })
+
     if (isStorageExist()) {
         loadDataFromStorage();
     }
@@ -166,7 +171,7 @@ function makeBook(bookObject) {
     } else {
         const sudahDibaca = document.createElement('button');
         sudahDibaca.classList.add('button-sudah-dibaca');
-        sudahDibaca.innerHTML = '<span class="material-icons">remove_circle_outline</span><span class="button-action-text">Selesai Dibaca</span>';
+        sudahDibaca.innerHTML = '<span class="material-icons">task_alt</span><span class="button-action-text">Selesai Dibaca</span>';
 
         sudahDibaca.addEventListener('click', function () {
             addBookToCompleted(bookObject.id);
@@ -297,6 +302,7 @@ function bookSearch() {
     const searchBook = document.getElementById("search-book-title");
     const filter = searchBook.value.toUpperCase();
     const bookItem = document.querySelectorAll(".book-item");
+
     for (let i = 0; i < bookItem.length; i++) {
         txtValue = bookItem[i].textContent || bookItem[i].innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {

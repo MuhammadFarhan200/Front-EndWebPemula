@@ -115,6 +115,7 @@ input[type=number]:focus {
     margin-top: 1rem;
     border: none;
     border-radius: 5rem;
+    outline: none;
     font-family: 'Jost', sans-serif;
     font-size: 16px;
     padding: 1rem 2rem;
@@ -125,7 +126,8 @@ input[type=number]:focus {
     transition: all 0.3s ease-in-out;
 }
 
-.submit-button:hover {
+.submit-button:hover,
+.submit-button:focus {
     background-color: #29323c;
     transform: translate(0, -5px);
 }
@@ -158,6 +160,7 @@ input[type=number]:focus {
     color: white;
     background-color: black;
     cursor: pointer;
+    outline: none;
     border: none;
     border-radius: 2rem;
     box-shadow: 0 4px 10px 0 rgba(45, 54, 65, 0.75);
@@ -170,12 +173,15 @@ input[type=number]:focus {
 }
 
 .button-sudah-dibaca:hover,
-.button-belum-dibaca:hover {
+.button-belum-dibaca:hover,
+.button-sudah-dibaca:focus,
+.button-belum-dibaca:focus {
     background-color: #29323c;
     transform: translate(0, -5px);
 }
 
-.button-hapus-buku:hover {
+.button-hapus-buku:hover,
+.button-hapus-buku:focus {
     background-color: rgb(94, 0, 0);
     transform: translate(0, -5px);
 }
