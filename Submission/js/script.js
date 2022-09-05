@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
         checkButton();
     });
 
-    formSearch.addEventListener("submit", function (event) {
+    formSearch.addEventListener("keyup", function (event) {
         event.preventDefault();
         bookSearch();
     });
