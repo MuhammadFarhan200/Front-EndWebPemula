@@ -217,7 +217,7 @@ input[type=number]:focus {
     margin-right: .5rem;
 }
 
-.footer .footer-text,
+.footer-text,
 .footer-text a {
     color: white;
 }
